@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <title>ТЗ_кодер_ТН</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="#">
+                <img src="img/logo.svg" alt="logotype">
+            </a>
+        </div>
+        <form class="header-form" id="loginForm">
+            <div class="header-form-container">
+                <input type="email" id="emailLogin" name="email" placeholder="Email">
+                <div class="error-message" style="display: none;">Please enter a valid email address</div>
+            </div>
+            <div class="header-form-container">
+                <input type="password" id="passwordLogin" name="password" placeholder="Password">
+                <div class="forgot-password">Forgot your password?</div>
+                <div class="password-error-message">Please enter a valid password</div>
+            </div>
+            <input type="submit" value="Log in" class="header-submit">
+        </form>
+    </header>
+
+    <section class="hero-main">
+        <div class="wrapper">
+            <div class="hero-main_tittle">
+                <h1>StarCompany DESIGNS, MANUFACTURES AND</h1>
+                <h2>Launches Advanced Rockets and Spacecrafts</h2>
+            </div>
+            <div class="step-container">
+                <button class="btn-prev">
+                    <img width="10" height="17" src="img/arrow-prev.svg" alt="prev">
+                </button>
+                <div class="step-slider">
+                    <form id="stepForm">
+                        <div class="slides">
+                            <div class="slide active" data-slide="1">
+                                <div class="slide-box">
+                                    <h3>Who are you?</h3>
+                                    <select id="whoAreYou">
+                                        <option value="" disabled selected>Select an option</option>
+                                        <option value="option1">Engineer</option>
+                                        <option value="option2">Business Development Executive</option>
+                                        <option value="option3">Office Manager/PA</option>
+                                        <option value="option3">Accountant</option>
+                                        <option value="option3">VR Designer</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="slide" data-slide="2">
+                                <div class="slide-box">
+                                    <h3>What is your age?</h3>
+                                    <select id="age">
+                                        <option value="" disabled selected>Select an option</option>
+                                        <option value="age1">Under 18</option>
+                                        <option value="age2">18-30</option>
+                                        <option value="age3">31-50</option>
+                                        <option value="age4">Over 50</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="slide" data-slide="3">
+                                <div class="slide-box">
+                                    <h3>I am from</h3>
+                                    <input type="text" placeholder="New Roads, 70760" id="location" required>
+                                </div>
+                                <div class="info">
+                                    E.g.: New Roads or 70760 <br>
+                                    We don’t use postal addresses to contact members directly!
+                                </div>
+                            </div>
+
+                            <div class="slide" data-slide="4">
+                                <div class="slide-box">
+                                    <h3>Your email address</h3>
+                                    <input type="email" placeholder="Input your email" id="email" required>
+                                </div>
+                                <span class="error-message" style="display: none;">Please enter a valid email
+                                    address</span>
+                            </div>
+
+                            <div class="slide" data-slide="5">
+                                <div class="slide-box">
+                                    <h3>Create your password</h3>
+                                    <input type="password" placeholder="•••••••••••••••" id="password" required>
+                                </div>
+                                <div class="info">
+                                    By clicking the button above you agree to our <a href="#">Terms of Use</a>
+                                    and <a href="#">Privacy Policy</a> including use of cookies and to receive
+                                    newsletters,
+                                    account updates and offers sent by StarCompany.
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-form">Start now</button>
+                    </form>
+                    <div class="dots">
+                        <span class="dot active" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                        <span class="dot" data-slide="4"></span>
+                        <span class="dot" data-slide="5"></span>
+                    </div>
+                </div>
+
+                <button onclick="nextSlide()" class="btn-next">Next step
+                    <img width="10" height="17" src="img/btn-next.svg" alt="next"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Функція для валідації Login -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+
+            if (loginForm) {
+                const emailErrorMessage = document.querySelector('.error-message');
+                const passwordErrorMessage = document.querySelector('.password-error-message');
+                const emailInput = document.getElementById('emailLogin');
+                const passwordInput = document.getElementById('passwordLogin');
+
+                loginForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+
+                    const email = emailInput.value;
+                    const password = passwordInput.value;
+
+                    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                    const isPasswordValid = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(password);
+
+                    if (emailErrorMessage) {
+                        emailErrorMessage.style.display = isEmailValid ? 'none' : 'block';
+                    }
+
+                    if (passwordErrorMessage) {
+                        passwordErrorMessage.style.display = isPasswordValid ? 'none' : 'block';
+                    }
+
+                    if (isEmailValid && isPasswordValid) {
+                        alert('Form submitted successfully!');
+                        emailInput.value = '';
+                        passwordInput.value = '';
+                    }
+                });
+            }
+        });
+
+
+
+    </script>
+
+    <script src="script/script.js"></script>
+</body>
+</html>
